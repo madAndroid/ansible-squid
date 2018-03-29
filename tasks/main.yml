@@ -21,6 +21,11 @@
   tags:
     - squid
 
+- include: Debian.yml
+  when: ansible_distribution == "Debian"
+  tags:
+    - squid
+
 - name: Create Squid configuration file
   become: yes
   template:
