@@ -7,8 +7,6 @@ squid_always_directs: []
 squid_cache_peers: []
 squid_dns_v4_first: "off"
 squid_forwarded_for: "on"
-squid_http_access_allow_clients:
-  - localhost
 squid_http_port: 3128
 squid_httpd_suppress_version_string: "off"
 squid_netdb_filename: "stdio:/var/log/{{ squid_service_name }}/netdb.state"
@@ -18,6 +16,8 @@ squid_proxy_only: false
 squid_tcp_outgoing_address: ''
 squid_via: "on"
 squid_visible_hostname: ''
+squid_acl_localnet:
+  - '10.0.0.0/8'
 squid_http_access:
   - action: 'deny'
     acl:
@@ -36,6 +36,9 @@ squid_http_access:
   - action: 'allow'
     acl:
       - 'localhost'
+  - action: 'allow'
+    acl:
+      - 'localnet'
   - action: 'deny'
     acl:
       - 'all'
