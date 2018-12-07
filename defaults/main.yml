@@ -18,3 +18,24 @@ squid_proxy_only: false
 squid_tcp_outgoing_address: ''
 squid_via: "on"
 squid_visible_hostname: ''
+squid_http_access:
+  - action: 'deny'
+    acl:
+      - '!Safe_ports'
+  - action: 'allow'
+    acl:
+      - 'CONNECT'
+      - '!SSL_ports'
+  - action: 'allow'
+    acl:
+      - 'localhost'
+      - 'manager'
+  - action: 'deny'
+    acl:
+      - 'manager'
+  - action: 'allow'
+    acl:
+      - 'localhost'
+  - action: 'deny'
+    acl:
+      - 'all'
