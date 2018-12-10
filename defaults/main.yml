@@ -16,8 +16,6 @@ squid_proxy_only: false
 squid_tcp_outgoing_address: ''
 squid_via: "on"
 squid_visible_hostname: ''
-squid_acl_localnet:
-  - '10.0.0.0/8'
 squid_http_access:
   - action: 'deny'
     acl:
