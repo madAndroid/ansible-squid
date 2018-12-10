@@ -36,9 +36,6 @@ squid_http_access:
   - action: 'allow'
     acl:
       - 'localhost'
-  - action: 'allow'
-    acl:
-      - 'localnet'
   - action: 'deny'
     acl:
       - 'all'
