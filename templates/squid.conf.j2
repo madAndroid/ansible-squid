@@ -19,14 +19,14 @@ acl {{ acl.name }} {{ acl.type }} {{ acl.argument }}
 {% endfor %}
 {% endif %}
 
-http_access deny !Safe_ports
-http_access deny CONNECT !SSL_ports
-http_access allow localhost manager
-http_access deny manager
 {% for client in squid_http_access_allow_clients %}
 http_access allow {{ client }}
 {% endfor %}
-http_access deny all
+{% if squid_http_access is defined and squid_http_access != [] %}
+{%   for item in squid_http_access %}
+http_access {{ item['action'] }} {{ item['acl']|join(' ') }}
+{%   endfor %}
+{% endif %}
 
 http_port {{ squid_http_port }}
 
